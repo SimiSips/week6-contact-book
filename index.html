@@ -1,10 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Week 6 - Contact Book (API's)</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>📲 Contact Book</h1>
+                <p>Manage your contacts with our simple API powered app.</p>
+            </div>
 
-</body>
+            <div class="content">
+                <!--API Setup page -->
+                <div id="setupPage" class="page active">
+                    <div class="api-setup">
+                        <h3>🔑 API Setup Required</h3>
+                        <p>Before you use the contact book, please enter your api
+                        key below. If you don't have one you can use:
+                            <strong>appacademy@itvarsity.org</strong></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="apiKeyInput">Enter your API Key (Email Address)</label>
+                        <input type="email" id="apiKeyInput" placeholder="your-email@example.com">
+                    </div>
+
+                    <button class="btn" onclick="setupApiKey()">🚀 Start using Contact Book</button>
+                </div>
+
+                <!-- Main Contacts Page -->
+                <div id="contactsPage" class="page">
+                    <div style="display: flex; justify-content: space-between;
+                    align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px">
+                        <h2>Your Contacts</h2>
+                        <div>
+                            <button class="btn btn-secondary" onclick="refreshContacts()">🔁 Refresh</button>
+                            <button class="btn btn-success" onclick="showAddContact()">➕ Add Contact</button>
+                        </div>
+                    </div>
+
+                    <div id="contactsList">
+                        <div class="loading">Loading contacts...</div>
+                    </div>
+                </div>
+
+                <!-- Add Contact Page -->
+                <div id="addContactsPage" class="page">
+                    <button class="btn btn-secondary back-btn" onclick="showContacts()">← Back to Contacts</button>
+
+                    <h2>Add New Contact</h2>
+
+                    <form id="addContactForm" onsubmit="addContact(event)">
+                        <div class="form-group">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" id="firstName" name="firstname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" id="lastName" name="lastname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number:</label>
+                            <input type="tel" id="mobile" name="mobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar">Profile Picture (Optional):</label>
+                            <input type="file" id="avatar" name="avatar" accept="image/*">
+                        </div>
+
+                        <button type="submit" class="btn btn-success">💾 Save Contact</button>
+                        <button type="button" class="btn btn-secondary" onclick="showContacts()">Cancel</button>
+                    </form>
+                </div>
+
+                <!-- Edit Contact Page -->
+                <div id="editContactsPage" class="page">
+                    <button class="btn btn-secondary back-btn" onclick="showContacts()">← Back to Contacts</button>
+
+                    <h2>Edit Contact</h2>
+
+                    <form id="editContactForm" onsubmit="updateContact(event)">
+                        <input type="hidden" id="editContactId">
+
+                        <div class="form-group">
+                            <label for="editFirstName">First Name:</label>
+                            <input type="text" id="editFirstName" name="firstname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editLastName">Last Name:</label>
+                            <input type="text" id="editLastName" name="lastname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editMobile">Mobile Number:</label>
+                            <input type="tel" id="editMobile" name="mobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email Address:</label>
+                            <input type="email" id="editEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAvatar">Profile Picture (Optional):</label>
+                            <input type="file" id="editAvatar" name="avatar" accept="image/*">
+                        </div>
+
+                        <button type="submit" class="btn btn-success">💾 Update Contact</button>
+                        <button type="button" class="btn btn-secondary" onclick="showContacts()">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
